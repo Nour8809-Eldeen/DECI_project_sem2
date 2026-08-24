@@ -1,0 +1,8 @@
+# The Git repository is used for the EventPulse project only.
+*
+!.gitignore
+!OneDrive/
+!OneDrive/Documents/
+!OneDrive/Documents/project.sem2/
+!OneDrive/Documents/project.sem2/StudentID-EventPulse/
+!OneDrive/Documents/project.sem2/StudentID-EventPulse/**

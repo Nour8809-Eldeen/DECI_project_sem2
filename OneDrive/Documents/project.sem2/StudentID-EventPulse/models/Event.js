@@ -1,0 +1,51 @@
+const mongoose = require('mongoose');
+
+const eventSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: [true, 'Title is required'],
+    trim: true
+  },
+  description: {
+    type: String,
+    required: [true, 'Description is required'],
+    trim: true
+  },
+  date: {
+    type: Date,
+    required: [true, 'Date is required']
+  },
+  city: {
+    type: String,
+    required: [true, 'City is required'],
+    trim: true
+  },
+  venue: {
+    type: String,
+    required: [true, 'Venue is required'],
+    trim: true
+  },
+  capacity: {
+    type: Number,
+    required: [true, 'Capacity is required'],
+    min: [1, 'Capacity must be at least 1']
+  },
+  registrationsCount: {
+    type: Number,
+    default: 0
+  },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
+    required: [true, 'Category is required']
+  },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: [true, 'Creator is required']
+  }
+}, { timestamps: true });
+
+eventSchema.index({ title: 'text', description: 'text' });
+
+module.exports = mongoose.model('Event', eventSchema);
