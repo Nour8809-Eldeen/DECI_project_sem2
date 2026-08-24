@@ -7,6 +7,10 @@ async function connectDB() {
     throw new Error('MONGO_URI is not defined');
   }
 
+  if (mongoose.connection.readyState === 1) {
+    return;
+  }
+
   try {
     await mongoose.connect(mongoUri, {
       autoIndex: true
@@ -14,7 +18,7 @@ async function connectDB() {
     console.log('MongoDB connected successfully');
   } catch (error) {
     console.error('MongoDB connection failed:', error.message);
-    process.exit(1);
+    throw error;
   }
 }
 
